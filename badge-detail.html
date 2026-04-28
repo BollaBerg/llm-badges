@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Badge Details</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <a href="index.html">Back to overview</a>
+    </header>
+    <main id="badge-detail">
+        <h1 id="badge-name"></h1>
+        <p id="badge-description"></p>
+        <button id="copy-btn">Copy as markdown</button>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+
+            fetch('data/badges.json')
+                .then(response => response.json())
+                .then(badges => {
+                    const badge = badges.find(b => b.id === id);
+                    if (badge) {
+                        document.getElementById('badge-name').textContent = badge.name;
+                        document.getElementById('badge-description').textContent = badge.description;
+                        
+                        document.getElementById('copy-btn').addEventListener('click', () => {
+                            const markdown = `[![${badge.name}](https://img.shields.io/badge/${badge.name.replace(/ /g, '%20')}-${badge.color})](https://your-site.com/badge-detail.html?id=${badge.id})`;
+                            navigator.clipboard.writeText(markdown).then(() => {
+                                alert('Markdown copied to clipboard!');
+                            });
+                        });
+                    }
+                });
+        });
+    </script>
+</body>
+</html>
