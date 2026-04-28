@@ -31,7 +31,7 @@
             const feedback = document.getElementById('copy-feedback');
 
             copyBtn.addEventListener('click', () => {
-                // Using a placeholder URL. To self-host, point this to your own image or SVG file.
+                // Points to the locally hosted SVG assets. Update your-site.com when deploying.
                 const badgeUrl = `https://your-site.com/assets/${badge.id}.svg`;
                 const projectUrl = `https://your-site.com/badge-detail.html?id=${badge.id}`;
                 const markdown = `[![LLM](${badgeUrl})](${projectUrl})`;
@@ -42,6 +42,7 @@
                     }, 2000);
                 });
             });
+
         }
     });
     </script>
