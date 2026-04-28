@@ -8,41 +8,58 @@
 </head>
 <body>
     <header>
-        <a href="index.html">Back to overview</a>
+        <a href="index.html" style="text-decoration: none; color: #6c757d;">&larr; Back to overview</a>
     </header>
     <main id="badge-detail">
-    <h1 id="badge-name"></h1>
-    <p id="badge-description"></p>
-    <button id="copy-btn">Copy as markdown</button>
-    <span id="copy-feedback" style="display: none; margin-left: 10px; color: green; font-size: 0.9em;">Copied!</span>
+        <div style="margin-bottom: 2rem;">
+            <div id="badge-preview" class="badge"></div>
+            <h1 id="badge-name" style="margin: 10px 0;"></h1>
+        </div>
+
+        <section style="margin-bottom: 2rem;">
+            <h3>Description</h3>
+            <p id="badge-long-description" style="color: #495057;"></p>
+        </section>
+
+        <section style="margin-bottom: 2rem;">
+            <h3>When to use this?</h3>
+            <p id="badge-usage" style="color: #495057; background: #e9ecef; padding: 15px; border-radius: 6px;"></p>
+        </section>
+
+        <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+            <button id="copy-btn" style="background: #212529; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 600;">Copy as markdown</button>
+            <span id="copy-feedback" style="display: none; margin-left: 10px; color: #28a745; font-weight: 500;">&check; Copied to clipboard!</span>
+        </div>
     </main>
     <script src="js/data.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         const params = new URLSearchParams(window.location.search);
         const id = params.get('id');
-
         const badge = badges.find(b => b.id === id);
+
         if (badge) {
             document.getElementById('badge-name').textContent = badge.name;
-            document.getElementById('badge-description').textContent = badge.description;
+            document.getElementById('badge-long-description').textContent = badge.longDescription;
+            document.getElementById('badge-usage').textContent = badge.usage;
+            
+            const preview = document.getElementById('badge-preview');
+            preview.className = `badge ${badge.color}`;
+            preview.innerHTML = `<span class="badge-label">LLM</span><span class="badge-value">${badge.name}</span>`;
 
             const copyBtn = document.getElementById('copy-btn');
             const feedback = document.getElementById('copy-feedback');
 
             copyBtn.addEventListener('click', () => {
-                // Points to the locally hosted SVG assets. Update your-site.com when deploying.
                 const badgeUrl = `https://your-site.com/assets/${badge.id}.svg`;
                 const projectUrl = `https://your-site.com/badge-detail.html?id=${badge.id}`;
                 const markdown = `[![LLM](${badgeUrl})](${projectUrl})`;
+
                 navigator.clipboard.writeText(markdown).then(() => {
                     feedback.style.display = 'inline';
-                    setTimeout(() => {
-                        feedback.style.display = 'none';
-                    }, 2000);
+                    setTimeout(() => { feedback.style.display = 'none'; }, 2000);
                 });
             });
-
         }
     });
     </script>
