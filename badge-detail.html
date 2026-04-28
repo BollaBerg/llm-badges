@@ -51,8 +51,8 @@
             const feedback = document.getElementById('copy-feedback');
 
             copyBtn.addEventListener('click', () => {
-                const badgeUrl = `https://your-site.com/assets/${badge.id}.svg`;
-                const projectUrl = `https://your-site.com/badge-detail.html?id=${badge.id}`;
+                const badgeUrl = `https://bollaberg.github.io/llm-badges/assets/${badge.id}.svg`;
+                const projectUrl = `https://bollaberg.github.io/llm-badges/badge-detail.html?id=${badge.id}`;
                 const markdown = `[![LLM](${badgeUrl})](${projectUrl})`;
 
                 navigator.clipboard.writeText(markdown).then(() => {
