@@ -31,10 +31,10 @@
             const feedback = document.getElementById('copy-feedback');
 
             copyBtn.addEventListener('click', () => {
-                const badgeUrl = `https://img.shields.io/badge/LLM-${badge.name.replace(/ /g, '%20')}-${badge.color}`;
+                // Using a placeholder URL. To self-host, point this to your own image or SVG file.
+                const badgeUrl = `https://your-site.com/assets/${badge.id}.svg`;
                 const projectUrl = `https://your-site.com/badge-detail.html?id=${badge.id}`;
                 const markdown = `[![LLM](${badgeUrl})](${projectUrl})`;
-
                 navigator.clipboard.writeText(markdown).then(() => {
                     feedback.style.display = 'inline';
                     setTimeout(() => {
