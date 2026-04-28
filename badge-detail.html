@@ -27,11 +27,15 @@
                 document.getElementById('badge-description').textContent = badge.description;
                 
                 document.getElementById('copy-btn').addEventListener('click', () => {
-                    const markdown = `[![${badge.name}](https://img.shields.io/badge/${badge.name.replace(/ /g, '%20')}-${badge.color})](https://your-site.com/badge-detail.html?id=${badge.id})`;
+                    // Using standard Shields.io format for the image, but linking to the user's project
+                    const badgeUrl = `https://img.shields.io/badge/LLM-${badge.name.replace(/ /g, '%20')}-${badge.color}`;
+                    const projectUrl = `https://your-site.com/badge-detail.html?id=${badge.id}`;
+                    const markdown = `[![LLM](${badgeUrl})](${projectUrl})`;
                     navigator.clipboard.writeText(markdown).then(() => {
                         alert('Markdown copied to clipboard!');
                     });
                 });
+
             }
         });
     </script>
