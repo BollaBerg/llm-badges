@@ -12,3 +12,13 @@ A set of pre-determined badges for project READMEs to indicate the level of LLM 
 ## Development
 
 This project is a website (hosted on GitHub Pages) that showcases these badges and provides convenient ways to copy them as markdown for use in other projects.
+
+### Running Locally
+
+To view the website locally, you can use Python's built-in HTTP server. Run the following command in the project root:
+
+```bash
+python3 -m http.server 8000
+```
+
+Then, open your browser and navigate to `http://localhost:8000`.
