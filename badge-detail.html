@@ -11,33 +11,40 @@
         <a href="index.html">Back to overview</a>
     </header>
     <main id="badge-detail">
-        <h1 id="badge-name"></h1>
-        <p id="badge-description"></p>
-        <button id="copy-btn">Copy as markdown</button>
+    <h1 id="badge-name"></h1>
+    <p id="badge-description"></p>
+    <button id="copy-btn">Copy as markdown</button>
+    <span id="copy-feedback" style="display: none; margin-left: 10px; color: green; font-size: 0.9em;">Copied!</span>
     </main>
     <script src="js/data.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const params = new URLSearchParams(window.location.search);
-            const id = params.get('id');
+    document.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
 
-            const badge = badges.find(b => b.id === id);
-            if (badge) {
-                document.getElementById('badge-name').textContent = badge.name;
-                document.getElementById('badge-description').textContent = badge.description;
-                
-                document.getElementById('copy-btn').addEventListener('click', () => {
-                    // Using standard Shields.io format for the image, but linking to the user's project
-                    const badgeUrl = `https://img.shields.io/badge/LLM-${badge.name.replace(/ /g, '%20')}-${badge.color}`;
-                    const projectUrl = `https://your-site.com/badge-detail.html?id=${badge.id}`;
-                    const markdown = `[![LLM](${badgeUrl})](${projectUrl})`;
-                    navigator.clipboard.writeText(markdown).then(() => {
-                        alert('Markdown copied to clipboard!');
-                    });
+        const badge = badges.find(b => b.id === id);
+        if (badge) {
+            document.getElementById('badge-name').textContent = badge.name;
+            document.getElementById('badge-description').textContent = badge.description;
+
+            const copyBtn = document.getElementById('copy-btn');
+            const feedback = document.getElementById('copy-feedback');
+
+            copyBtn.addEventListener('click', () => {
+                const badgeUrl = `https://img.shields.io/badge/LLM-${badge.name.replace(/ /g, '%20')}-${badge.color}`;
+                const projectUrl = `https://your-site.com/badge-detail.html?id=${badge.id}`;
+                const markdown = `[![LLM](${badgeUrl})](${projectUrl})`;
+
+                navigator.clipboard.writeText(markdown).then(() => {
+                    feedback.style.display = 'inline';
+                    setTimeout(() => {
+                        feedback.style.display = 'none';
+                    }, 2000);
                 });
-
-            }
-        });
+            });
+        }
+    });
     </script>
+
 </body>
 </html>
