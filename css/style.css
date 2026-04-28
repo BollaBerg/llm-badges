@@ -1,0 +1,6 @@
+body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; }
+.badge { display: inline-block; padding: 5px 10px; color: white; border-radius: 4px; margin: 5px; cursor: pointer; }
+.green { background-color: green; }
+.orange { background-color: orange; }
+.yellow { background-color: yellow; color: black; }
+.red { background-color: red; }
