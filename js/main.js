@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const link = document.createElement('a');
         link.href = `badge-detail.html?id=${badge.id}`;
         link.className = `badge ${badge.color}`;
-        link.textContent = badge.name;
+        
+        link.innerHTML = `<span class="badge-label">LLM</span><span class="badge-value">${badge.name}</span>`;
         list.appendChild(link);
     });
 });

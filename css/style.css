@@ -1,6 +1,33 @@
-body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; }
-.badge { display: inline-block; padding: 5px 10px; color: white; border-radius: 4px; margin: 5px; cursor: pointer; }
-.green { background-color: green; }
-.orange { background-color: orange; }
-.yellow { background-color: yellow; color: black; }
-.red { background-color: red; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; }
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 4px;
+    font-family: var(--font-mono, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace);
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    text-decoration: none;
+    margin: 5px;
+    cursor: pointer;
+    box-shadow: none;
+}
+
+.badge-label {
+    background-color: #555;
+    color: #fff;
+    padding: 0 6px;
+    border-radius: 4px 0 0 4px;
+}
+
+.badge-value {
+    color: #fff;
+    padding: 0 6px;
+    border-radius: 0 4px 4px 0;
+}
+
+.green .badge-value { background-color: #4c1; }
+.orange .badge-value { background-color: #fe7d37; }
+.yellow .badge-value { background-color: #dfb317; }
+.red .badge-value { background-color: #e05d44; }
