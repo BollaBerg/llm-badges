@@ -15,27 +15,24 @@
         <p id="badge-description"></p>
         <button id="copy-btn">Copy as markdown</button>
     </main>
+    <script src="js/data.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const params = new URLSearchParams(window.location.search);
             const id = params.get('id');
 
-            fetch('data/badges.json')
-                .then(response => response.json())
-                .then(badges => {
-                    const badge = badges.find(b => b.id === id);
-                    if (badge) {
-                        document.getElementById('badge-name').textContent = badge.name;
-                        document.getElementById('badge-description').textContent = badge.description;
-                        
-                        document.getElementById('copy-btn').addEventListener('click', () => {
-                            const markdown = `[![${badge.name}](https://img.shields.io/badge/${badge.name.replace(/ /g, '%20')}-${badge.color})](https://your-site.com/badge-detail.html?id=${badge.id})`;
-                            navigator.clipboard.writeText(markdown).then(() => {
-                                alert('Markdown copied to clipboard!');
-                            });
-                        });
-                    }
+            const badge = badges.find(b => b.id === id);
+            if (badge) {
+                document.getElementById('badge-name').textContent = badge.name;
+                document.getElementById('badge-description').textContent = badge.description;
+                
+                document.getElementById('copy-btn').addEventListener('click', () => {
+                    const markdown = `[![${badge.name}](https://img.shields.io/badge/${badge.name.replace(/ /g, '%20')}-${badge.color})](https://your-site.com/badge-detail.html?id=${badge.id})`;
+                    navigator.clipboard.writeText(markdown).then(() => {
+                        alert('Markdown copied to clipboard!');
+                    });
                 });
+            }
         });
     </script>
 </body>
