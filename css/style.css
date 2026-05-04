@@ -64,3 +64,17 @@ h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
 .orange .badge-value { background-color: #fe7d37; }
 .yellow .badge-value { background-color: #dfb317; }
 .red .badge-value { background-color: #e05d44; }
+
+footer {
+    margin-top: 5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: #6c757d;
+    text-decoration: underline;
+}
