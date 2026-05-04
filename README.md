@@ -19,7 +19,7 @@ To use a badge in your project, simply go to [this project's pages](https://boll
 
 ## Development
 
-This project is a website (hosted on GitHub Pages) that showcases these badges and provides convenient ways to copy them as markdown for use in other projects.
+This project is a website (hosted on GitHub Pages) that showcases these badges and provides convenient ways to copy them as markdown or HTML for use in other projects.
 
 ### Running Locally
 
