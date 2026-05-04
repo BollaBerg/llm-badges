@@ -27,7 +27,8 @@
         </section>
 
         <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
-            <button id="copy-btn" style="background: #212529; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 600;">Copy as markdown</button>
+            <button id="copy-markdown-btn" style="background: #212529; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 600;">Copy as markdown</button>
+            <button id="copy-html-btn" style="background: #212529; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; margin-left: 10px;">Copy as HTML</button>
             <span id="copy-feedback" style="display: none; margin-left: 10px; color: #28a745; font-weight: 500;">&check; Copied to clipboard!</span>
         </div>
     </main>
@@ -47,18 +48,23 @@
             preview.className = `badge ${badge.color}`;
             preview.innerHTML = `<span class="badge-label">LLM</span><span class="badge-value">${badge.name}</span>`;
 
-            const copyBtn = document.getElementById('copy-btn');
+            const badgeUrl = `https://bollaberg.github.io/llm-badges/assets/${badge.id}.svg`;
+            const projectUrl = `https://bollaberg.github.io/llm-badges/badge-detail.html?id=${badge.id}`;
             const feedback = document.getElementById('copy-feedback');
 
-            copyBtn.addEventListener('click', () => {
-                const badgeUrl = `https://bollaberg.github.io/llm-badges/assets/${badge.id}.svg`;
-                const projectUrl = `https://bollaberg.github.io/llm-badges/badge-detail.html?id=${badge.id}`;
-                const markdown = `[![LLM](${badgeUrl})](${projectUrl})`;
+            const showFeedback = () => {
+                feedback.style.display = 'inline';
+                setTimeout(() => { feedback.style.display = 'none'; }, 2000);
+            };
 
-                navigator.clipboard.writeText(markdown).then(() => {
-                    feedback.style.display = 'inline';
-                    setTimeout(() => { feedback.style.display = 'none'; }, 2000);
-                });
+            document.getElementById('copy-markdown-btn').addEventListener('click', () => {
+                const markdown = `[![LLM](${badgeUrl})](${projectUrl})`;
+                navigator.clipboard.writeText(markdown).then(showFeedback);
+            });
+
+            document.getElementById('copy-html-btn').addEventListener('click', () => {
+                const html = `<a href="${projectUrl}"><img src="${badgeUrl}" alt="LLM"></a>`;
+                navigator.clipboard.writeText(html).then(showFeedback);
             });
         }
     });
