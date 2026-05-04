@@ -70,11 +70,14 @@ footer {
     padding-top: 2rem;
     border-top: 1px solid var(--border-color);
     text-align: center;
-    color: #6c757d;
-    font-size: 0.9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
 }
 
 footer a {
-    color: #6c757d;
-    text-decoration: underline;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
 }
