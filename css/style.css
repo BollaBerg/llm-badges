@@ -78,7 +78,23 @@ footer {
 
 footer a {
     text-decoration: none;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    height: 24px;
+    vertical-align: middle;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+footer .badge {
+    margin-bottom: 0;
 }
