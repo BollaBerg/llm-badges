@@ -34,7 +34,7 @@
     </main>
     <footer>
         <a href="badge-detail.html?id=fully-generated" class="badge red">
-            <span class="badge-label">LLM</span><span class="badge-value">fully generated</span>
+            <span class="badge-value">fully generated</span>
         </a>
         <a href="https://github.com/bollaberg/llm-badges" style="font-size: 1.5rem; color: #212529;" aria-label="GitHub Repository">
             <svg height="24" width="24" viewBox="0 0 16 16" fill="currentColor">
@@ -56,7 +56,7 @@
             
             const preview = document.getElementById('badge-preview');
             preview.className = `badge ${badge.color}`;
-            preview.innerHTML = `<span class="badge-label">LLM</span><span class="badge-value">${badge.name}</span>`;
+            preview.innerHTML = `<span class="badge-label">${badge.name}</span><span class="badge-value">${badge.name}</span>`;
 
             const badgeUrl = `https://bollaberg.github.io/llm-badges/assets/${badge.id}.svg`;
             const projectUrl = `https://bollaberg.github.io/llm-badges/badge-detail.html?id=${badge.id}`;
@@ -68,12 +68,12 @@
             };
 
             document.getElementById('copy-markdown-btn').addEventListener('click', () => {
-                const markdown = `[![LLM](${badgeUrl})](${projectUrl})`;
+                const markdown = `[![${badge.name}](${badgeUrl})](${projectUrl})`;
                 navigator.clipboard.writeText(markdown).then(showFeedback);
             });
 
             document.getElementById('copy-html-btn').addEventListener('click', () => {
-                const html = `<a href="${projectUrl}"><img src="${badgeUrl}" alt="LLM"></a>`;
+                const html = `<a href="${projectUrl}"><img src="${badgeUrl}" alt="${badge.name}"></a>`;
                 navigator.clipboard.writeText(html).then(showFeedback);
             });
         }
